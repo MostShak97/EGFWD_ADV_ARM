@@ -24,8 +24,8 @@ typedef struct
     uint32 VECACT   :8;
     uint32          :3;
     uint32 RETBASE  :1;
-    uint32 VECPEND  :3;
-    uint32 VECPEND  :4;
+    uint32 VECPEND0  :3;
+    uint32 VECPEND1  :4;
     uint32          :2;
     uint32 ISRPEND  :1;
     uint32 ISRPRE   :1;
@@ -51,7 +51,17 @@ typedef union
 #define CORTEXM4_PERI_BASE_ADDRESS             0xE000E000
 #define APINT                                  *((volatile uint32*)(CORTEXM4_PERI_BASE_ADDRESS+0xD0C))
 #define INTCTRL                                *((volatile INTCTRL_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0xD04))
-
+#define NVIC_EN0                               *((volatile uint32*)(CORTEXM4_PERI_BASE_ADDRESS+0x100))
+#define SYSTEM_CONTROL_BASE_ADDRESS            0x400FE000
+#define RCGTIMER                               *((volatile uint32*)(SYSTEM_CONTROL_BASE_ADDRESS+0x604))
+#define TIMER0_BASE_ADDRESS                    0x40030000
+#define GPTMCFG                                *((volatile uint32*)(TIMER0_BASE_ADDRESS+0x000))
+#define GPTMTAMR                               *((volatile uint32*)(TIMER0_BASE_ADDRESS+0x004))
+#define GPTMCTL                                *((volatile uint32*)(TIMER0_BASE_ADDRESS+0x00C))
+#define GPTMIMR                                *((volatile uint32*)(TIMER0_BASE_ADDRESS+0x018))
+#define GPTMICR                                *((volatile uint32*)(TIMER0_BASE_ADDRESS+0x024))
+#define GPTMTAILR                              *((volatile uint32*)(TIMER0_BASE_ADDRESS+0x028))
+#define GPTMTAR                                *((volatile uint32*)(TIMER0_BASE_ADDRESS+0x048))
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES
  *********************************************************************************************************************/
